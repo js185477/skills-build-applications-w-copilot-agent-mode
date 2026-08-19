@@ -3,14 +3,10 @@ import type { Express, Request, Response } from 'express';
 import mongoose from 'mongoose';
 
 import { Activity, LeaderboardEntry, Team, User, Workout } from './models.ts';
+import { apiBaseUrl, PORT } from './server.ts';
 
 export const app: Express = express();
-const PORT = Number(process.env.PORT ?? 8000);
 const MONGODB_URI = process.env.MONGODB_URI ?? 'mongodb://localhost:27017/octofit_db';
-const codespaceName = process.env.CODESPACE_NAME;
-const apiBaseUrl = codespaceName
-  ? `https://${codespaceName}-8000.app.github.dev`
-  : `http://localhost:${PORT}`;
 
 const users = [
   { id: 1, name: 'Ava', email: 'ava@octofit.com', team: 'Blue Falcons', points: 420, weeklyMinutes: 260 },
