@@ -90,15 +90,15 @@ app.get('/', (_req: Request, res: Response) => {
   res.json({
     message: 'OctoFit Tracker API is running',
     apiBaseUrl,
-    routes: ['/api/users/', '/api/teams/', '/api/activities/', '/api/leaderboard/', '/api/workouts/']
+    routes: ['/api/users', '/api/teams', '/api/activities', '/api/leaderboard', '/api/workouts']
   });
 });
 
-app.get('/api/users/', respondWithCollection('users', users));
-app.get('/api/teams/', respondWithCollection('teams', teams));
-app.get('/api/activities/', respondWithCollection('activities', activities));
-app.get('/api/leaderboard/', respondWithCollection('leaderboard', leaderboard));
-app.get('/api/workouts/', respondWithCollection('workouts', workouts));
+app.get('/api/users', respondWithCollection('users', users));
+app.get('/api/teams', respondWithCollection('teams', teams));
+app.get('/api/activities', respondWithCollection('activities', activities));
+app.get('/api/leaderboard', respondWithCollection('leaderboard', leaderboard));
+app.get('/api/workouts', respondWithCollection('workouts', workouts));
 
 if (process.env.NODE_ENV !== 'test') {
   mongoose

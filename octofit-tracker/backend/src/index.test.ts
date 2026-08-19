@@ -25,17 +25,22 @@ test('API exposes the core OctoFit routes', async () => {
   const port = address.port;
 
   try {
-    const usersResponse = await fetch(`http://127.0.0.1:${port}/api/users/`);
+    const usersResponse = await fetch(`http://127.0.0.1:${port}/api/users`);
     assert.equal(usersResponse.status, 200);
     const users = await usersResponse.json();
     assert.ok(Array.isArray(users));
 
-    const teamsResponse = await fetch(`http://127.0.0.1:${port}/api/teams/`);
+    const teamsResponse = await fetch(`http://127.0.0.1:${port}/api/teams`);
     assert.equal(teamsResponse.status, 200);
     const teams = await teamsResponse.json();
     assert.ok(Array.isArray(teams));
 
-    const leaderboardResponse = await fetch(`http://127.0.0.1:${port}/api/leaderboard/`);
+    const activitiesResponse = await fetch(`http://127.0.0.1:${port}/api/activities`);
+    assert.equal(activitiesResponse.status, 200);
+    const activities = await activitiesResponse.json();
+    assert.ok(Array.isArray(activities));
+
+    const leaderboardResponse = await fetch(`http://127.0.0.1:${port}/api/leaderboard`);
     assert.equal(leaderboardResponse.status, 200);
     const leaderboard = await leaderboardResponse.json();
     assert.ok(Array.isArray(leaderboard));
