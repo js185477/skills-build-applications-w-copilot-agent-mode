@@ -4,8 +4,8 @@ export const apiBaseUrl = codespaceName
   ? `https://${codespaceName}-8000.app.github.dev`
   : (import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'http://localhost:8000')
 
-export async function fetchCollection(resource) {
-  const response = await fetch(`${apiBaseUrl}/api/${resource}/`)
+export async function fetchCollection(resource, endpoint = `${apiBaseUrl}/api/${resource}/`) {
+  const response = await fetch(endpoint)
 
   if (!response.ok) {
     throw new Error(`Unable to load ${resource} (${response.status})`)

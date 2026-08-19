@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react'
 import { fetchCollection } from '../api.js'
 
+const activitiesEndpoint = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/activities/`
+  : `${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/activities/`
+
 function Activities() {
   const [activities, setActivities] = useState([])
   const [status, setStatus] = useState('loading')
   const [error, setError] = useState('')
 
   useEffect(() => {
-    fetchCollection('activities').then(setActivities).then(() => setStatus('ready')).catch((reason) => { setError(reason.message); setStatus('error') })
+    fetchCollection('activities', activitiesEndpoint).then(setActivities).then(() => setStatus('ready')).catch((reason) => { setError(reason.message); setStatus('error') })
   }, [])
 
   return (
